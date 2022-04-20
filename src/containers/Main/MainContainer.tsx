@@ -6,19 +6,17 @@ import SectionB from "../../components/SectionScrollSecond";
 import SectionC from "../../components/SectionScrollThrid";
 import SectionD from "../../components/SectionScrollFourd";
 import Footer from "../../components/Footer";
-import img from "../../assets/img/001/IMG_6726.jpg";
+
+let yOffset = 0;
+let prevScrollHeight = 0;
+let currentScene = 0;
+let nextScene = false;
+
+let sceneInfo: any[] = [];
 
 const MainContainer = () => {
   const [page, setPage] = useState<number>(0);
-  const [load, setLoad] = useState<boolean>(false);
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [imgElem, setImgElem] = useState<HTMLImageElement>();
-
-  let sceneInfo: any[] = [];
-  let yOffset = 0;
-  let prevScrollHeight = 0;
-  let currentScene = 0;
-  let nextScene = false;
 
   const setLayout = useCallback(() => {
     for (let i = 0; i < sceneInfo.length; i++) {
@@ -74,6 +72,17 @@ const MainContainer = () => {
     return rv;
   };
 
+  const brush = (seq: number) => {
+    if (!sceneInfo) return;
+    const objs = sceneInfo[currentScene].objs;
+    const ctx = objs.context;
+    let img = new Image();
+    img.src = `../../assets/img/001/IMG_${6726 + seq}.jpg`;
+    img.onload = function () {
+      ctx.drawImage(img, 0, 0);
+    };
+  };
+
   const playAnimation = useCallback(() => {
     const objs = sceneInfo[currentScene].objs;
     const values = sceneInfo[currentScene].values;
@@ -87,9 +96,7 @@ const MainContainer = () => {
           clacValuese(values.imageSequence, currentYOffset)
         );
 
-        if (objs.videoImages) {
-          objs.context.drawImage(objs.videoImages[sequence], 0, 0);
-        }
+        brush(sequence);
 
         if (scrollRatio <= 0.22) {
           objs.messageA.style.opacity = clacValuese(
@@ -252,7 +259,7 @@ const MainContainer = () => {
         break;
       }
     }
-  }, [load]);
+  }, [loaded, sceneInfo]);
 
   const scrollLoop = useCallback(() => {
     nextScene = false;
@@ -279,9 +286,7 @@ const MainContainer = () => {
     }
 
     playAnimation();
-  }, [currentScene]);
-
-  const setCanvasImages = () => {};
+  }, [currentScene, playAnimation]);
 
   useEffect(() => {
     sceneInfo = [
@@ -322,7 +327,6 @@ const MainContainer = () => {
           message_D_translateY_out: [0, -20, { start: 0.85, end: 0.9 }],
         },
       },
-
       {
         type: "nomal",
         // heightNum: 5,
@@ -377,7 +381,6 @@ const MainContainer = () => {
   }, []);
 
   useEffect(() => {
-    setCanvasImages();
     setLayout();
   }, [setLayout]);
 
@@ -393,17 +396,14 @@ const MainContainer = () => {
   useEffect(() => {
     for (let i = 0; i < sceneInfo[0].values.videoImageCount; i++) {
       let img = new Image();
-      setImgElem(img);
       img.src = `../../assets/img/001/IMG_${6726 + i}.jpg`;
       sceneInfo[0].objs.videoImages.push(img);
-    }
 
-    if (imgElem) {
-      imgElem.onload = () => {
-        setLoad(true);
-      };
+      if (i === sceneInfo[0].values.videoImageCount - 1) {
+        setLoaded(true);
+      }
     }
-  }, [imgElem]);
+  }, []);
 
   return (
     <>
