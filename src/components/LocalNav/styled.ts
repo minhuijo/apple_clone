@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
-export const LocalNav = styled.nav`
+export const LocalNav = styled.nav<{ position?: boolean }>`
   display: flex;
   justify-content: center;
   width: 100%;
   height: 52px;
   border-bottom: 1px solid #ddd;
   padding: 0 1rem;
-  position: absolute;
+  position: ${(props) => (props.position ? "fixed" : "absolute")};
   z-index: 11;
-  top: 45px;
+  top: ${(props) => (props.position ? "0" : "45px")};
   left: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: saturate(180%) blur(15px);
 `;
 
 export const LocalNavLinks = styled.div`

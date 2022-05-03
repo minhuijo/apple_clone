@@ -33,3 +33,8 @@ export const CanvasCaption = styled.p`
     font-size: 2rem;
   }
 `;
+
+export const BlendImg = styled.img`
+  margin: 1rem;
+  width: 80%;
+`;

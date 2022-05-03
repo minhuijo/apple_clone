@@ -72,3 +72,18 @@ export const DescPin = styled.div`
   height: 100px;
   background-color: rgb(29, 29, 31);
 `;
+
+export const canvasArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+`;
+
+export const Canvas = styled.canvas`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;

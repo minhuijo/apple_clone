@@ -1,11 +1,13 @@
 import * as Styled from "./styled";
 
-interface Props {}
+interface Props {
+  menu: boolean;
+}
 
-const LocalNav = (props: Props) => {
+const LocalNav = ({ menu }: Props) => {
   return (
     <>
-      <Styled.LocalNav>
+      <Styled.LocalNav position={menu}>
         <Styled.LocalNavLinks>
           <Styled.LocalNavProduct>AirMug Pro</Styled.LocalNavProduct>
           <Styled.LocalNavItem>개요</Styled.LocalNavItem>

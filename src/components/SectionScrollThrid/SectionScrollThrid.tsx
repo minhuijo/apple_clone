@@ -2,12 +2,24 @@ import * as Styled from "./styled";
 
 interface Props {
   page: number;
+  currentScene: number;
 }
 
-const SectionScrollThrid = ({ page }: Props) => {
+const SectionScrollThrid = ({ page, currentScene }: Props) => {
   return (
     <>
       <Styled.ScrollSection id="scroll-section-2">
+        <Styled.canvasArea>
+          <Styled.Canvas
+            id="video-canvas-1"
+            width={1920}
+            height={1080}
+            style={
+              currentScene !== 2 ? { display: "none" } : { display: "block" }
+            }
+          ></Styled.Canvas>
+        </Styled.canvasArea>
+
         <Styled.ScrollMessage
           display={page === 2 ? "flex" : "none"}
           className="messageA"

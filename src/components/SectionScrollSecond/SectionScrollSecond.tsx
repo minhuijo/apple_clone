@@ -2,7 +2,7 @@ import * as Styled from "./styled";
 
 interface Props {}
 
-const SectionScrollSecond = (props: Props) => {
+const SectionScrollSecond = ({}: Props) => {
   return (
     <>
       <Styled.ScrollSection id="scroll-section-1">

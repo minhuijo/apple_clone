@@ -2,16 +2,25 @@ import * as Styled from "./styled";
 
 interface Props {
   page: number;
+  currentScene: number;
 }
 
-const SectionsScrollFirst = ({ page }: Props) => {
+const SectionsScrollFirst = ({ page, currentScene }: Props) => {
   return (
     <>
       <Styled.ScrollSection id="scroll-section-0">
         <Styled.Title>AirMug Pro</Styled.Title>
-        <Styled.canvasElem>
-          <canvas id="video-canvas-0" width="1920" height="1080"></canvas>
-        </Styled.canvasElem>
+        <Styled.CanvasElem>
+          <Styled.Canvas
+            id="video-canvas-0"
+            width="1920"
+            height="1080"
+            style={
+              currentScene !== 0 ? { display: "none" } : { display: "block" }
+            }
+          ></Styled.Canvas>
+        </Styled.CanvasElem>
+
         <Styled.ScrollMessage
           className="messageA"
           display={page === 0 ? "flex" : "none"}

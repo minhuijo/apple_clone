@@ -5,6 +5,8 @@ export const ScrollSection = styled.section`
 `;
 
 export const Title = styled.h1`
+  position: relative;
+  top: -10vh;
   font-size: 4rem;
   text-align: center;
 
@@ -37,9 +39,17 @@ export const Message = styled.p`
   text-align: center;
 `;
 
-export const canvasElem = styled.div`
-  display: none;
+export const CanvasElem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  left: 0;
-  width: 100%;
+  top: 0;
+  z-index: -1;
+`;
+
+export const Canvas = styled.canvas`
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;

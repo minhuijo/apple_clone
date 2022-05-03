@@ -13,6 +13,9 @@ const SectionScrollFourd = (props: Props) => {
           <br />
           아름답고 부드러운 음료 공간.
         </Styled.MidMessege>
+
+        <Styled.BlendImg src="img/blend-image-2.jpg" />
+
         <Styled.CanvasCaption className="canvas-caption">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt expedita
           quis ullam eum nihil alias provident culpa impedit ab quibusdam,
